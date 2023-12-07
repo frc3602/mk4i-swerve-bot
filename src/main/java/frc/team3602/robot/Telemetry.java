@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.util.Color8Bit;
 
 public class Telemetry {
   private final double maxSpeed;
+  public Pose2d robotPose;
 
   /**
    * Construct a telemetry object, with the specified max speed of the robot.
@@ -89,6 +90,7 @@ public class Telemetry {
   public void telemeterize(SwerveDriveState state) {
     // Telemeterize the pose.
     Pose2d pose = state.Pose;
+    robotPose = state.Pose;
     fieldPublishier.set(new double[] {
         pose.getX(),
         pose.getY(),

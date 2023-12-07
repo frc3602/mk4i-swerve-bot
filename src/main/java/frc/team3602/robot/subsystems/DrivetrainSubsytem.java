@@ -8,11 +8,16 @@ package frc.team3602.robot.subsystems;
 
 import java.util.function.Supplier;
 
+import com.choreo.lib.Choreo;
+import com.choreo.lib.ChoreoTrajectory;
+
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrain;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
@@ -25,6 +30,8 @@ public class DrivetrainSubsytem extends SwerveDrivetrain implements Subsystem {
   public final SwerveRequest.PointWheelsAt pointWheelsAt = new SwerveRequest.PointWheelsAt();
 
   public final Telemetry telemetryLogger = new Telemetry(Constants.DrivetrainConstants.MAX_SPEED);
+
+  private final ChoreoTrajectory trajectory = Choreo.getTrajectory("Trajectory");
 
   public DrivetrainSubsytem(SwerveDrivetrainConstants drivetrainConstants, double odometryUpdateFrequency,
       SwerveModuleConstants... moduleConstants) {
@@ -43,5 +50,25 @@ public class DrivetrainSubsytem extends SwerveDrivetrain implements Subsystem {
 
   public Command applyRequest(Supplier<SwerveRequest> requestSupplier) {
     return run(() -> this.setControl(requestSupplier.get()));
+  }
+
+  /**
+   * Construct a swerve command for the robot to follow the trajectory.
+   */
+  public Command swerveControllerCommand() {
+    return Choreo.choreoSwerveCommand(
+        trajectory,
+        () -> telemetryLogger.robotPose,
+        new PIDController(Constants.AutonomousConstants.KP_X_CONTROLLER, 0.0, 0.0),
+        new PIDController(Constants.AutonomousConstants.KP_Y_CONTROLLER, 0.0, 0.0),
+        new PIDController(Constants.AutonomousConstants.KP_THETA_CONTROLLER, 0.0, 0.0),
+        (ChassisSpeeds speeds) -> {
+          this.applyRequest(() -> fieldCentricDrive
+              .withVelocityX(speeds.vxMetersPerSecond)
+              .withVelocityY(speeds.vyMetersPerSecond)
+              .withRotationalRate(speeds.omegaRadiansPerSecond));
+        },
+        true,
+        this);
   }
 }

@@ -160,4 +160,10 @@ public final class Constants {
         FRONT_LEFT_MODULE_CONSTANTS, FRONT_RIGHT_MODULE_CONSTANTS, BACK_LEFT_MODULE_CONSTANTS,
         BACK_RIGHT_MODULE_CONSTANTS);
   }
+
+  public static final class AutonomousConstants {
+    public static final double KP_X_CONTROLLER = 1.0;
+    public static final double KP_Y_CONTROLLER = 1.0;
+    public static final double KP_THETA_CONTROLLER = 1.0;
+  }
 }
