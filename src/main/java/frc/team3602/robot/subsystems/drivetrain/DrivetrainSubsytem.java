@@ -4,7 +4,7 @@
  * in the root directory of this project.
  */
 
-package frc.team3602.robot.subsystems;
+package frc.team3602.robot.subsystems.drivetrain;
 
 import java.util.function.Supplier;
 
@@ -22,7 +22,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
 import frc.team3602.robot.Constants;
-import frc.team3602.robot.Telemetry;
 
 public class DrivetrainSubsytem extends SwerveDrivetrain implements Subsystem {
   public final SwerveRequest.FieldCentric fieldCentricDrive = new SwerveRequest.FieldCentric().withIsOpenLoop(true);
@@ -53,7 +52,10 @@ public class DrivetrainSubsytem extends SwerveDrivetrain implements Subsystem {
   }
 
   /**
-   * Construct a swerve command for the robot to follow the trajectory.
+   * Constructs a swerve controller command for the robot to follow the
+   * trajectory.
+   * 
+   * @return Swerve controller command.
    */
   public Command swerveControllerCommand() {
     return Choreo.choreoSwerveCommand(

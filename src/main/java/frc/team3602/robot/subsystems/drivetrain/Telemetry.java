@@ -4,7 +4,7 @@
  * in the root directory of this project.
  */
 
-package frc.team3602.robot;
+package frc.team3602.robot.subsystems.drivetrain;
 
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrain.SwerveDriveState;
