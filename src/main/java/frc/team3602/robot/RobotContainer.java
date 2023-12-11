@@ -45,6 +45,8 @@ public class RobotContainer {
 
   private void configAutonomous() {
     SmartDashboard.putData(sendableChooser);
+
+    sendableChooser.addOption("Autonomous", drivetrainSubsys.swerveControllerCommand());
   }
 
   public Command getAutonomousCommand() {

@@ -25,7 +25,7 @@ import static frc.team3602.robot.Constants.DrivetrainConstants.*;
 public class DrivetrainSubsystem extends SwerveDrivetrain implements Subsystem {
   private final SwerveRequest.ApplyChassisSpeeds autonomousRequest = new SwerveRequest.ApplyChassisSpeeds();
   public final SwerveRequest.FieldCentric fieldCentricDrive = new SwerveRequest.FieldCentric()
-      .withIsOpenLoop(true)
+      .withIsOpenLoop(IS_OPEN_LOOP)
       .withDeadband(0.02 * MAX_SPEED)
       .withRotationalDeadband(0.02 * MAX_ANGULAR_RATE);
 
