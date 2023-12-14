@@ -17,6 +17,7 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
@@ -29,7 +30,7 @@ public class DrivetrainSubsystem extends SwerveDrivetrain implements Subsystem {
       .withDeadband(0.02 * MAX_SPEED)
       .withRotationalDeadband(0.02 * MAX_ANGULAR_RATE);
 
-  private final ChoreoTrajectory trajectory = Choreo.getTrajectory("trajectory");
+  private final ChoreoTrajectory trajectory = Choreo.getTrajectory("trajectory2");
 
   public DrivetrainSubsystem(SwerveDrivetrainConstants drivetrainConstants, double odometryUpdateFrequency,
       SwerveModuleConstants... moduleConstants) {
@@ -54,10 +55,10 @@ public class DrivetrainSubsystem extends SwerveDrivetrain implements Subsystem {
     return Choreo.choreoSwerveCommand(
         trajectory,
         () -> this.getState().Pose,
-        new PIDController(0.0, 0.0, 0.0),
-        new PIDController(0.0, 0.0, 0.0),
-        new PIDController(0.0, 0.0, 0.0),
-        (speeds) -> this.setControl(autonomousRequest.withSpeeds(speeds)),
+        new PIDController(1.0, 0.0, 0.0),
+        new PIDController(1.0, 0.0, 0.0),
+        new PIDController(1.0, 0.0, 0.0),
+        (ChassisSpeeds speeds) -> this.setControl(autonomousRequest.withSpeeds(speeds)),
         true,
         this);
   }
