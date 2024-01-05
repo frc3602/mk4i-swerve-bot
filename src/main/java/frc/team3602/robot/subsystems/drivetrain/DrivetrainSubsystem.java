@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2023, Team 3602. All rights reserved. This work is
- * licensed under the terms of the MIT license which can be found
+ * Copyright (C) 2023, FRC Team 3602. All rights reserved. This work
+ * is licensed under the terms of the MIT license which can be found
  * in the root directory of this project.
  */
 
@@ -15,6 +15,7 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrain;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
+import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -22,11 +23,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
 import static frc.team3602.robot.Constants.DrivetrainConstants.*;
-
+  
 public class DrivetrainSubsystem extends SwerveDrivetrain implements Subsystem {
   private final SwerveRequest.ApplyChassisSpeeds autonomousRequest = new SwerveRequest.ApplyChassisSpeeds();
   public final SwerveRequest.FieldCentric fieldCentricDrive = new SwerveRequest.FieldCentric()
-      .withIsOpenLoop(IS_OPEN_LOOP)
+      .withDriveRequestType(DriveRequestType.OpenLoopVoltage)
       .withDeadband(0.02 * MAX_SPEED)
       .withRotationalDeadband(0.02 * MAX_ANGULAR_RATE);
 

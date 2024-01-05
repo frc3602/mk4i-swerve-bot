@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2023, Team 3602. All rights reserved. This work is
- * licensed under the terms of the MIT license which can be found
+ * Copyright (C) 2023, FRC Team 3602. All rights reserved. This work
+ * is licensed under the terms of the MIT license which can be found
  * in the root directory of this project.
  */
 
@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Robot extends TimedRobot {
-  private final RobotContainer robotContainer = new RobotContainer();
-
   private Command autonomousCommand;
+
+  private final RobotContainer robotContainer = new RobotContainer();
 
   @Override
   public void robotInit() {

@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2023, Team 3602. All rights reserved. This work is
- * licensed under the terms of the MIT license which can be found
+ * Copyright (C) 2023, FRC Team 3602. All rights reserved. This work
+ * is licensed under the terms of the MIT license which can be found
  * in the root directory of this project.
  */
 
@@ -10,7 +10,7 @@ import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstantsFactory;
-import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants.SwerveModuleSteerFeedbackType;
+import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants.SteerFeedbackType;
 
 import edu.wpi.first.math.util.Units;
 
@@ -28,7 +28,6 @@ public final class Constants {
 
     private final static int PIGEON_CAN_ID = 52;
     private final static String CAN_BUS_NAME = "rio";
-    private final static boolean SUPPORTS_PRO = false;
 
     private static final double DRIVE_GEAR_RATIO = 6.122448979591837;
     private static final double TURN_GEAR_RATIO = 21.428571428571427;
@@ -52,8 +51,7 @@ public final class Constants {
 
     private static final SwerveDrivetrainConstants DRIVETRAIN_CONSTANTS = new SwerveDrivetrainConstants()
         .withPigeon2Id(PIGEON_CAN_ID)
-        .withCANbusName(CAN_BUS_NAME)
-        .withSupportsPro(SUPPORTS_PRO);
+        .withCANbusName(CAN_BUS_NAME);
 
     private static final SwerveModuleConstantsFactory MODULE_CONSTANTS_FACTORY = new SwerveModuleConstantsFactory()
         .withDriveMotorGearRatio(DRIVE_GEAR_RATIO)
@@ -67,7 +65,7 @@ public final class Constants {
         .withSteerMotorInverted(TURN_MOTOR_INVERTED)
         .withDriveInertia(DRIVE_INERTIA)
         .withSteerInertia(TURN_INERTIA)
-        .withFeedbackSource(SwerveModuleSteerFeedbackType.FusedCANcoder);
+        .withFeedbackSource(SteerFeedbackType.FusedCANcoder);
 
     // Front left (Module 0)
     private static final int FRONT_LEFT_TURN_MOTOR_ID = 49;
