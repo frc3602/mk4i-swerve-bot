@@ -41,6 +41,8 @@ public class RobotContainer {
   }
 
   private void configButtonBindings() {
+    // While holding a button, align with an apriltag.
+    xboxController.a().whileTrue(drivetrainSubsys.alignWithTarget());
   }
 
   private void configAutonomous() {
